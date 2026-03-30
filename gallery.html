@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery - Subbulakshmi Lathe & Welding Works</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- HERO BANNER -->
+    <section class="hero-banner">
+      <img src="images/left.png" alt="Left" class="side-img" />
+      <img src="images/banner.png" alt="Center Banner" class="center-banner" />
+      <img src="images/right.png" alt="Right" class="side-img" />
+    </section>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- GALLERY -->
+    <section class="gallery-page">
+      <h2>Our Workshop Gallery</h2>
+
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img
+            src="images/loader.jpeg"
+            onclick="openModal(this.src, 'image')"
+          />
+          <p>Heavy Mechanical Repair</p>
+        </div>
+
+        <div class="gallery-card">
+          <img
+            src="images/welding.jpeg"
+            onclick="openModal(this.src, 'image')"
+          />
+          <p>Industrial Welding</p>
+        </div>
+
+        <div class="gallery-card">
+          <img
+            src="images/loader2.jpeg"
+            onclick="openModal(this.src, 'image')"
+          />
+          <p>Loader Service</p>
+        </div>
+
+        <div class="gallery-card">
+          <img
+            src="images/painting.jpg"
+            onclick="openModal(this.src, 'image')"
+          />
+          <p>Bus Painting</p>
+        </div>
+        <div class="gallery-card">
+          <img
+            src="images/painting2.jpeg"
+            onclick="openModal(this.src, 'image')"
+          />
+          <p>Bus Painting</p>
+        </div>
+
+        <div class="gallery-card">
+          <img
+            src="images/chariot.jpeg"
+            onclick="openModal(this.src, 'image')"
+          />
+          <p>Chariot Works</p>
+        </div>
+        <div class="gallery-card">
+          <img
+            src="images/chariot2.jpeg"
+            onclick="openModal(this.src, 'image')"
+          />
+          <p>Chariot Works</p>
+        </div>
+
+        <div class="gallery-card">
+          <img
+            src="images/platform.jpeg"
+            onclick="openModal(this.src, 'image')"
+          />
+          <p>Platform Fabrication</p>
+        </div>
+
+        <div class="gallery-card">
+          <img
+            src="images/Automation Backdoor.jpeg"
+            onclick="openModal(this.src, 'image')"
+          />
+          <p>Automation Backdoor</p>
+        </div>
+
+        <div class="gallery-card">
+          <video onclick="openModal(this.querySelector('source').src, 'video')">
+            <source src="videos/door1.mp4" type="video/mp4" />
+          </video>
+          <p>Automation door opening</p>
+        </div>
+        <div class="gallery-card">
+          <video onclick="openModal(this.querySelector('source').src, 'video')">
+            <source src="videos/chariot paint.mp4" type="video/mp4" />
+          </video>
+          <p>Chariot painting work</p>
+        </div>
+        <div class="gallery-card">
+          <video onclick="openModal(this.querySelector('source').src, 'video')">
+            <source src="videos/Body work.mp4" type="video/mp4" />
+          </video>
+          <p>Body work finishing</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL -->
+    <div id="galleryModal" class="modal" onclick="closeModal()">
+      <span class="close-btn">&times;</span>
+      <img id="modalImage" class="modal-content" />
+      <video id="modalVideo" class="modal-content" controls></video>
+    </div>
+
+    <!-- FOOTER -->
+    
+
+    <script>
+      function openModal(src, type) {
+        const modal = document.getElementById("galleryModal");
+        const modalImage = document.getElementById("modalImage");
+        const modalVideo = document.getElementById("modalVideo");
+
+        modal.style.display = "flex";
+
+        if (type === "image") {
+          modalImage.style.display = "block";
+          modalVideo.style.display = "none";
+          modalImage.src = src;
+        } else {
+          modalImage.style.display = "none";
+          modalVideo.style.display = "block";
+          modalVideo.src = src;
+          modalVideo.play();
+        }
+      }
+
+      function closeModal() {
+        document.getElementById("galleryModal").style.display = "none";
+        document.getElementById("modalVideo").pause();
+      }
+    </script>
+  </body>
+</html>
+ <footer>
+      <p>© 2026 Subbulakshmi Lathe & Welding Works</p>
+    </footer>
+  </body>
+</html>

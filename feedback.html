@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback - Subbulakshmi Lathe & Welding Works</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- Banner -->
+    <section class="hero-banner">
+      <img src="images/left.png" alt="Left Image" class="side-img" />
+      <img src="images/banner.png" alt="Center Banner" class="center-banner" />
+      <img src="images/right.png" alt="Right Image" class="side-img" />
+    </section>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Feedback Section -->
+    <section class="feedback-section">
+      <h2>Customer Reviews</h2>
+
+      <div class="overall-rating">
+        Overall Rating: <span id="average-rating">0</span> ⭐
+      </div>
+
+      <div class="review-form">
+        <input type="text" id="customerName" placeholder="Your Name" />
+
+        <textarea
+          id="customerReview"
+          placeholder="Write your review"
+        ></textarea>
+
+        <div class="stars" id="starContainer">
+          <span onclick="setRating(1)">☆</span>
+          <span onclick="setRating(2)">☆</span>
+          <span onclick="setRating(3)">☆</span>
+          <span onclick="setRating(4)">☆</span>
+          <span onclick="setRating(5)">☆</span>
+        </div>
+
+        <button onclick="submitReview()">Submit Review</button>
+      </div>
+
+      <div id="reviews-container"></div>
+    </section>
+
+    <script>
+      let selectedRating = 0;
+      let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+      displayReviews();
+      calculateAverage();
+
+      function setRating(rating) {
+        selectedRating = rating;
+        const stars = document.querySelectorAll("#starContainer span");
+
+        stars.forEach((star, index) => {
+          star.innerHTML = index < rating ? "★" : "☆";
+        });
+      }
+
+      function submitReview() {
+        const name = document.getElementById("customerName").value.trim();
+        const review = document.getElementById("customerReview").value.trim();
+
+        if (name === "" || review === "" || selectedRating === 0) {
+          alert("Please fill all fields and select rating");
+          return;
+        }
+
+        const duplicate = reviews.find(
+          (item) => item.name.toLowerCase() === name.toLowerCase()
+        );
+
+        if (duplicate) {
+          alert("This name already submitted review");
+          return;
+        }
+
+        const dateTime = new Date().toLocaleString();
+
+        reviews.push({
+          name,
+          review,
+          rating: selectedRating,
+          dateTime,
+        });
+
+        localStorage.setItem("reviews", JSON.stringify(reviews));
+
+        displayReviews();
+        calculateAverage();
+
+        document.getElementById("customerName").value = "";
+        document.getElementById("customerReview").value = "";
+        selectedRating = 0;
+
+        document
+          .querySelectorAll("#starContainer span")
+          .forEach((star) => (star.innerHTML = "☆"));
+      }
+
+      function displayReviews() {
+        const container = document.getElementById("reviews-container");
+        container.innerHTML = "";
+
+        reviews.forEach((item, index) => {
+          container.innerHTML += `
+          <div class="review-card">
+            <div class="review-top">
+              <div class="review-name">${item.name}</div>
+              <div class="review-time">${item.dateTime}</div>
+            </div>
+
+            <div class="review-stars">${"★".repeat(item.rating)}</div>
+
+            <p>${item.review}</p>
+
+            <button class="delete-btn" onclick="adminDelete(${index})">Delete</button>
+          </div>
+          `;
+        });
+      }
+
+      function adminDelete(index) {
+        const adminName = prompt("Enter Admin Name:");
+        const adminPassword = prompt("Enter Admin Password:");
+
+        if (adminName === "Kamatchi" && adminPassword === "Kamatchi/2004") {
+          reviews.splice(index, 1);
+          localStorage.setItem("reviews", JSON.stringify(reviews));
+          displayReviews();
+          calculateAverage();
+          alert("Review deleted successfully");
+        } else {
+          alert("Invalid Admin Credentials");
+        }
+      }
+
+      function calculateAverage() {
+        if (reviews.length === 0) {
+          document.getElementById("average-rating").innerText = "0";
+          return;
+        }
+
+        let total = reviews.reduce((sum, item) => sum + item.rating, 0);
+        let avg = (total / reviews.length).toFixed(1);
+
+        document.getElementById("average-rating").innerText = avg;
+      }
+    </script>
+  </body>
+</html>
+ <footer>
+      <p>© 2026 Subbulakshmi Lathe & Welding Works</p>
+    </footer>
+  </body>
+</html>

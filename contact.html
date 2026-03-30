@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services - Subbulakshmi Lathe & Welding Works</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Banner -->
+    <section class="hero-banner">
+      <img src="images/left.png" alt="Left Image" class="side-img" />
+      <img src="images/banner.png" alt="Center Banner" class="center-banner" />
+      <img src="images/right.png" alt="Right Image" class="side-img" />
+    </section>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="contact-page">
+      <h2>Contact Us</h2>
+
+      <div class="contact-container">
+        <!-- Left Side -->
+        <div class="contact-info">
+          <h3>Workshop Address</h3>
+          <p>143, TP Mills, Rajapalayam, Tamil Nadu</p>
+          <p>Virudhunagar District 626117</p>
+
+          <h3>Phone</h3>
+          <p><a href="tel:+919965291306">📞 +91 9965291306</a></p>
+
+          <h3>WhatsApp</h3>
+          <p>
+            <a href="https://wa.me/918015396306" target="_blank"
+              >💬 +91 8015396306</a
+            >
+          </p>
+
+          <h3>Working Hours</h3>
+          <p>Monday - Saturday : 8:00 AM - 7:00 PM</p>
+        </div>
+
+        <!-- Right Side -->
+      <!-- Right Side -->
+<div class="contact-form">
+  <h3>Send Enquiry</h3>
+
+  <form onsubmit="sendToWhatsApp(event)">
+    <input type="text" id="name" placeholder="Your Name" required />
+
+
+    <input type="tel" id="phone" placeholder="Your Phone Number" required />
+
+    <textarea id="message" placeholder="Service Enquiry" required></textarea>
+
+    <button type="submit">Send</button>
+  </form>
+</div>
+
+<script>
+function sendToWhatsApp(event) {
+  event.preventDefault();
+
+  let name = document.getElementById("name").value;
+
+  let phone = document.getElementById("phone").value;
+  let message = document.getElementById("message").value;
+
+ 
+   let whatsappNumber = "918015396306"; // your number with country code
+
+  let url =
+    "https://wa.me/" + whatsappNumber +
+    "?text=" +
+    "Name: " + encodeURIComponent(name) + "%0a" +
+   
+    "Phone: " + encodeURIComponent(phone) + "%0a" +
+    "Message: " + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+}
+</script>
+
+      <!-- Google Map -->
+
+      <div class="map-section">
+        <iframe
+          src="https://www.google.com/maps?q=143,TP Mills,Rajapalayam,Tamil Nadu&output=embed"
+          width="100%"
+          height="350"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+        >
+        </iframe>
+      </div>
+    </section>
+
+   <footer>
+      <p>© 2026 Subbulakshmi Lathe & Welding Works</p>
+    </footer>
+  </body>
+</html>
+
